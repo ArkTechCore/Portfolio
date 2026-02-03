@@ -1,0 +1,922 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Projects | Mohammed Yousuf - Full-Stack Developer</title>
+    <link rel="stylesheet" href="styles/main.css" />
+    <link rel="stylesheet" href="styles/animations.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&family=Roboto+Mono:wght@300;400&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      /* Additional styles for projects page */
+      .project-detail-header {
+        padding: 150px 0 80px;
+        text-align: center;
+        background: linear-gradient(
+          135deg,
+          rgba(15, 23, 42, 0.9),
+          rgba(10, 15, 28, 0.9)
+        );
+        position: relative;
+        overflow: hidden;
+      }
+
+      .project-detail-header::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background:
+          radial-gradient(
+            circle at 30% 30%,
+            rgba(67, 97, 238, 0.1),
+            transparent 50%
+          ),
+          radial-gradient(
+            circle at 70% 70%,
+            rgba(76, 201, 240, 0.1),
+            transparent 50%
+          );
+      }
+
+      .project-title-main {
+        font-size: 3.5rem;
+        margin-bottom: 1rem;
+        background: linear-gradient(135deg, #4361ee, #4cc9f0);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+
+      .project-subtitle {
+        font-size: 1.2rem;
+        color: var(--gray);
+        max-width: 600px;
+        margin: 0 auto 2rem;
+      }
+
+      .project-meta {
+        display: flex;
+        justify-content: center;
+        gap: 2rem;
+        margin-top: 2rem;
+        flex-wrap: wrap;
+      }
+
+      .meta-item {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 0.5rem 1rem;
+        background: rgba(76, 201, 240, 0.1);
+        border-radius: 20px;
+        color: var(--accent);
+      }
+
+      .project-detail-content {
+        padding: 5rem 0;
+      }
+
+      .project-overview {
+        max-width: 800px;
+        margin: 0 auto 4rem;
+      }
+
+      .overview-title {
+        font-size: 2rem;
+        margin-bottom: 1.5rem;
+        color: var(--light);
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+
+      .overview-title i {
+        color: var(--accent);
+      }
+
+      .overview-text {
+        font-size: 1.1rem;
+        line-height: 1.8;
+        color: var(--gray);
+      }
+
+      .features-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 2rem;
+        margin: 3rem 0;
+      }
+
+      .feature-card {
+        background: rgba(255, 255, 255, 0.05);
+        border-radius: 15px;
+        padding: 2rem;
+        border: 1px solid rgba(76, 201, 240, 0.1);
+        transition: all 0.3s ease;
+      }
+
+      .feature-card:hover {
+        transform: translateY(-10px);
+        border-color: var(--accent);
+      }
+
+      .feature-icon {
+        font-size: 2.5rem;
+        color: var(--accent);
+        margin-bottom: 1rem;
+      }
+
+      .feature-title {
+        font-size: 1.2rem;
+        margin-bottom: 1rem;
+        color: var(--light);
+      }
+
+      .tech-stack-detailed {
+        margin: 4rem 0;
+      }
+
+      .tech-stack-title {
+        font-size: 1.8rem;
+        margin-bottom: 2rem;
+        color: var(--light);
+      }
+
+      .tech-stack-grid {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1rem;
+      }
+
+      .tech-item-large {
+        background: rgba(67, 97, 238, 0.1);
+        padding: 1rem 2rem;
+        border-radius: 10px;
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        font-size: 1.1rem;
+      }
+
+      .tech-item-large i {
+        font-size: 1.5rem;
+        color: var(--accent);
+      }
+
+      .implementation-details {
+        background: rgba(255, 255, 255, 0.05);
+        border-radius: 15px;
+        padding: 2rem;
+        margin: 3rem 0;
+        border-left: 4px solid var(--accent);
+      }
+
+      .implementation-title {
+        font-size: 1.5rem;
+        margin-bottom: 1rem;
+        color: var(--light);
+      }
+
+      .project-navigation {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 5rem;
+        padding-top: 3rem;
+        border-top: 1px solid rgba(76, 201, 240, 0.1);
+      }
+
+      .nav-btn {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 1rem 2rem;
+        background: rgba(76, 201, 240, 0.1);
+        color: var(--accent);
+        text-decoration: none;
+        border-radius: 50px;
+        transition: all 0.3s ease;
+      }
+
+      .nav-btn:hover {
+        background: var(--gradient);
+        color: white;
+        transform: translateY(-3px);
+      }
+
+      .project-image-placeholder {
+        width: 100%;
+        height: 400px;
+        background: linear-gradient(
+          135deg,
+          rgba(67, 97, 238, 0.1),
+          rgba(76, 201, 240, 0.1)
+        );
+        border-radius: 15px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 2rem 0;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .project-image-placeholder::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: linear-gradient(
+          45deg,
+          transparent 30%,
+          rgba(255, 255, 255, 0.05) 50%,
+          transparent 70%
+        );
+        animation: shimmer 2s infinite linear;
+      }
+
+      .project-image-placeholder i {
+        font-size: 4rem;
+        color: var(--accent);
+        opacity: 0.5;
+        z-index: 1;
+      }
+
+      @media (max-width: 768px) {
+        .project-title-main {
+          font-size: 2.5rem;
+        }
+
+        .project-meta {
+          flex-direction: column;
+          align-items: center;
+        }
+
+        .project-navigation {
+          flex-direction: column;
+          gap: 1rem;
+        }
+
+        .nav-btn {
+          justify-content: center;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <canvas id="space-canvas"></canvas>
+    <div class="space-overlay"></div>
+    <!-- Navigation -->
+    <nav class="navbar">
+      <div class="container">
+        <div class="logo">
+          <a
+            href="index.html"
+            style="
+              text-decoration: none;
+              color: inherit;
+              display: flex;
+              align-items: center;
+              gap: 0.5rem;
+            "
+          >
+            <span class="logo-text">MY</span>
+            <span class="logo-dot"></span>
+          </a>
+        </div>
+        <div class="nav-toggle">
+          <div class="hamburger">
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
+        </div>
+        <ul class="nav-links">
+          <li><a href="index.html" class="nav-link">Home</a></li>
+          <li><a href="index.html#projects" class="nav-link">Featured</a></li>
+          <li><a href="#projects" class="nav-link active">All Projects</a></li>
+          <li><a href="index.html#contact" class="nav-link">Contact</a></li>
+          <li>
+            <a
+              href="assets/resume.pdf"
+              class="btn-nav"
+              target="_blank"
+              >Resume</a
+            >
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+    <!-- Projects Header -->
+    <section class="project-detail-header">
+      <div class="container">
+        <h1 class="project-title-main">Project Portfolio</h1>
+        <p class="project-subtitle">
+          Detailed showcase of independent full-stack development projects built
+          with Python, Django, and Flutter
+        </p>
+        <div class="project-meta">
+          <div class="meta-item">
+            <i class="fas fa-code"></i>
+            <span>3 Full Projects</span>
+          </div>
+          <div class="meta-item">
+            <i class="fas fa-layer-group"></i>
+            <span>End-to-End Development</span>
+          </div>
+          <div class="meta-item">
+            <i class="fas fa-server"></i>
+            <span>Production-Ready Backends</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Project 1: AI Shift Management -->
+    <section id="project1" class="project-detail-content">
+      <div class="container">
+        <div class="project-overview">
+          <h2 class="overview-title">
+            <i class="fas fa-calendar-alt"></i>
+            AI Shift Management & Payroll Platform
+          </h2>
+          <p class="overview-text">
+            A comprehensive multi-tenant workforce management platform designed
+            for businesses with multiple store locations. The system features
+            AI-assisted scheduling, geo-fenced attendance tracking, and
+            automated payroll processing with production-ready backend
+            architecture.
+          </p>
+
+          <div class="project-meta">
+            <div class="meta-item">
+              <i class="fas fa-calendar"></i>
+              <span>Independent Project</span>
+            </div>
+            <div class="meta-item">
+              <i class="fas fa-clock"></i>
+              <span>3 Months Development</span>
+            </div>
+            <div class="meta-item">
+              <i class="fas fa-code-branch"></i>
+              <span>Full-Stack Implementation</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="project-image-placeholder">
+          <i class="fas fa-calendar-alt"></i>
+        </div>
+
+        <div class="features-grid">
+          <div class="feature-card">
+            <div class="feature-icon">
+              <i class="fas fa-users-cog"></i>
+            </div>
+            <h3 class="feature-title">Multi-Tenant Architecture</h3>
+            <p>
+              Designed for multiple stores with isolated data and role-based
+              access control for different user types.
+            </p>
+          </div>
+
+          <div class="feature-card">
+            <div class="feature-icon">
+              <i class="fas fa-robot"></i>
+            </div>
+            <h3 class="feature-title">AI-Assisted Scheduling</h3>
+            <p>
+              Intelligent shift scheduling that automatically fills understaffed
+              shifts and detects conflicts.
+            </p>
+          </div>
+
+          <div class="feature-card">
+            <div class="feature-icon">
+              <i class="fas fa-map-marked-alt"></i>
+            </div>
+            <h3 class="feature-title">Geo-Fenced Clocking</h3>
+            <p>
+              Location-based clock-in/out with out-of-zone tracking and manager
+              approval workflows.
+            </p>
+          </div>
+
+          <div class="feature-card">
+            <div class="feature-icon">
+              <i class="fas fa-calculator"></i>
+            </div>
+            <h3 class="feature-title">Automated Payroll</h3>
+            <p>
+              Smart payroll logic separating per-store hours with accurate
+              combined totals and reporting.
+            </p>
+          </div>
+        </div>
+
+        <div class="tech-stack-detailed">
+          <h3 class="tech-stack-title">Technology Stack</h3>
+          <div class="tech-stack-grid">
+            <div class="tech-item-large">
+              <i class="fab fa-python"></i>
+              <span>Python / Django</span>
+            </div>
+            <div class="tech-item-large">
+              <i class="fab fa-flutter"></i>
+              <span>Flutter Mobile App</span>
+            </div>
+            <div class="tech-item-large">
+              <i class="fas fa-database"></i>
+              <span>PostgreSQL</span>
+            </div>
+            <div class="tech-item-large">
+              <i class="fas fa-server"></i>
+              <span>REST APIs</span>
+            </div>
+            <div class="tech-item-large">
+              <i class="fas fa-shield-alt"></i>
+              <span>JWT Authentication</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="implementation-details">
+          <h3 class="implementation-title">Implementation Details</h3>
+          <p>
+            <strong>Backend Architecture:</strong> Built with Django REST
+            Framework featuring role-based authentication, multi-tenant database
+            design with schema separation, and scheduled tasks for automated
+            payroll processing.
+          </p>
+
+          <p>
+            <strong>Frontend Implementation:</strong> Flutter mobile application
+            with provider state management, custom calendar widgets for
+            scheduling, and real-time updates via WebSocket connections.
+          </p>
+
+          <p><strong>Key Features Implemented:</strong></p>
+          <ul style="color: var(--gray); margin-left: 1.5rem; line-height: 1.8">
+            <li>
+              Fixed weekly scheduling (Friday–Thursday) with automatic locking
+            </li>
+            <li>
+              Immutable audit history for all schedule changes and payroll
+              adjustments
+            </li>
+            <li>
+              Manager and employee mobile apps with different permission levels
+            </li>
+            <li>Automated overtime detection and risk flagging</li>
+            <li>Real-time notifications for schedule changes</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- Project 2: Loyalty Platform -->
+    <section
+      id="project2"
+      class="project-detail-content"
+      style="background: rgba(15, 23, 42, 0.5)"
+    >
+      <div class="container">
+        <div class="project-overview">
+          <h2 class="overview-title">
+            <i class="fas fa-shopping-bag"></i>
+            Loyalty & Ordering Mobile Application
+          </h2>
+          <p class="overview-text">
+            A scalable loyalty and ordering platform designed for retail chains
+            with 60+ store locations. The system features store-specific menus,
+            barcode validation for rewards, and real-time kitchen management
+            with a complete mobile ordering experience.
+          </p>
+
+          <div class="project-meta">
+            <div class="meta-item">
+              <i class="fas fa-store"></i>
+              <span>Scalable to 60+ Stores</span>
+            </div>
+            <div class="meta-item">
+              <i class="fas fa-mobile-alt"></i>
+              <span>Cross-Platform Mobile</span>
+            </div>
+            <div class="meta-item">
+              <i class="fas fa-qrcode"></i>
+              <span>Barcode Integration</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="project-image-placeholder">
+          <i class="fas fa-shopping-bag"></i>
+        </div>
+
+        <div class="features-grid">
+          <div class="feature-card">
+            <div class="feature-icon">
+              <i class="fas fa-store-alt"></i>
+            </div>
+            <h3 class="feature-title">Multi-Store Support</h3>
+            <p>
+              Each location has unique menus, pricing, and promotional offers
+              with centralized management.
+            </p>
+          </div>
+
+          <div class="feature-card">
+            <div class="feature-icon">
+              <i class="fas fa-barcode"></i>
+            </div>
+            <h3 class="feature-title">Barcode POS Validation</h3>
+            <p>
+              Integrated barcode scanning for deals, rewards redemption, and
+              promotional validation.
+            </p>
+          </div>
+
+          <div class="feature-card">
+            <div class="feature-icon">
+              <i class="fas fa-clock"></i>
+            </div>
+            <h3 class="feature-title">Real-time Order Tracking</h3>
+            <p>
+              Build-and-pickup food ordering with live kitchen pickup screens
+              and order status updates.
+            </p>
+          </div>
+
+          <div class="feature-card">
+            <div class="feature-icon">
+              <i class="fas fa-gift"></i>
+            </div>
+            <h3 class="feature-title">Loyalty Program</h3>
+            <p>
+              Complete loyalty system with points accumulation, rewards, and
+              personalized offers.
+            </p>
+          </div>
+        </div>
+
+        <div class="tech-stack-detailed">
+          <h3 class="tech-stack-title">Technology Stack</h3>
+          <div class="tech-stack-grid">
+            <div class="tech-item-large">
+              <i class="fab fa-flutter"></i>
+              <span>Flutter Mobile</span>
+            </div>
+            <div class="tech-item-large">
+              <i class="fab fa-django"></i>
+              <span>Django REST API</span>
+            </div>
+            <div class="tech-item-large">
+              <i class="fas fa-bolt"></i>
+              <span>WebSocket</span>
+            </div>
+            <div class="tech-item-large">
+              <i class="fab fa-python"></i>
+              <span>Python Backend</span>
+            </div>
+            <div class="tech-item-large">
+              <i class="fas fa-chart-bar"></i>
+              <span>Analytics Dashboard</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="implementation-details">
+          <h3 class="implementation-title">System Architecture</h3>
+          <p>
+            <strong>Mobile Application:</strong> Flutter-based cross-platform
+            app with seamless user experience, push notifications, and offline
+            capability for order browsing.
+          </p>
+
+          <p>
+            <strong>Backend Services:</strong> Django REST API with JWT
+            authentication, real-time order updates via WebSocket, and
+            integration with barcode scanning hardware.
+          </p>
+
+          <p>
+            <strong>Admin Features:</strong> Complete web-based dashboard for
+            store management, menu configuration, analytics, and customer
+            relationship management.
+          </p>
+
+          <p><strong>Key Technical Achievements:</strong></p>
+          <ul style="color: var(--gray); margin-left: 1.5rem; line-height: 1.8">
+            <li>
+              End-to-end ownership from system design to UI/UX implementation
+            </li>
+            <li>Real-time order updates using WebSocket connections</li>
+            <li>Offline data synchronization for mobile app</li>
+            <li>Secure payment integration capabilities</li>
+            <li>Scalable database architecture for high transaction volumes</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- Project 3: Kiosk System -->
+    <section id="project3" class="project-detail-content">
+      <div class="container">
+        <div class="project-overview">
+          <h2 class="overview-title">
+            <i class="fas fa-tablet-alt"></i>
+            Self-Ordering Kiosk System
+          </h2>
+          <p class="overview-text">
+            A store-based self-ordering kiosk system inspired by McDonald's,
+            designed for quick-service restaurants. The system includes a
+            web-based admin panel for centralized management and Flutter-based
+            kiosk applications for in-store ordering, scalable to 60+ locations.
+          </p>
+
+          <div class="project-meta">
+            <div class="meta-item">
+              <i class="fas fa-desktop"></i>
+              <span>Web Admin Panel</span>
+            </div>
+            <div class="meta-item">
+              <i class="fas fa-tablet"></i>
+              <span>Kiosk Application</span>
+            </div>
+            <div class="meta-item">
+              <i class="fas fa-rocket"></i>
+              <span>Production Ready</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="project-image-placeholder">
+          <i class="fas fa-tablet-alt"></i>
+        </div>
+
+        <div class="features-grid">
+          <div class="feature-card">
+            <div class="feature-icon">
+              <i class="fas fa-desktop"></i>
+            </div>
+            <h3 class="feature-title">Web Admin Dashboard</h3>
+            <p>
+              Complete web-based administration for menu management, store
+              configuration, and sales analytics.
+            </p>
+          </div>
+
+          <div class="feature-card">
+            <div class="feature-icon">
+              <i class="fas fa-tablet-alt"></i>
+            </div>
+            <h3 class="feature-title">Flutter Kiosk App</h3>
+            <p>
+              Custom Flutter application optimized for kiosk devices with
+              touch-friendly interface.
+            </p>
+          </div>
+
+          <div class="feature-card">
+            <div class="feature-icon">
+              <i class="fas fa-exchange-alt"></i>
+            </div>
+            <h3 class="feature-title">API Integration</h3>
+            <p>
+              REST APIs designed for seamless integration between kiosk, admin
+              panel, and backend systems.
+            </p>
+          </div>
+
+          <div class="feature-card">
+            <div class="feature-icon">
+              <i class="fas fa-chart-line"></i>
+            </div>
+            <h3 class="feature-title">Real-time Analytics</h3>
+            <p>
+              Live sales tracking, popular item analysis, and store performance
+              metrics.
+            </p>
+          </div>
+        </div>
+
+        <div class="tech-stack-detailed">
+          <h3 class="tech-stack-title">Technology Stack</h3>
+          <div class="tech-stack-grid">
+            <div class="tech-item-large">
+              <i class="fab fa-flutter"></i>
+              <span>Flutter Kiosk App</span>
+            </div>
+            <div class="tech-item-large">
+              <i class="fab fa-django"></i>
+              <span>Django Backend</span>
+            </div>
+            <div class="tech-item-large">
+              <i class="fab fa-html5"></i>
+              <span>HTML/CSS Admin</span>
+            </div>
+            <div class="tech-item-large">
+              <i class="fab fa-js"></i>
+              <span>JavaScript</span>
+            </div>
+            <div class="tech-item-large">
+              <i class="fas fa-code"></i>
+              <span>REST API</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="implementation-details">
+          <h3 class="implementation-title">Development Details</h3>
+          <p>
+            <strong>Current Status:</strong> Backend fully production-ready with
+            complete API documentation. Flutter kiosk app partially implemented
+            with core ordering functionality. Web admin panel fully functional.
+          </p>
+
+          <p>
+            <strong>Kiosk Application:</strong> Optimized for touch interfaces
+            with large buttons, intuitive navigation, and accessibility
+            features. Includes multi-language support and dietary preference
+            filtering.
+          </p>
+
+          <p>
+            <strong>Admin Features:</strong> Centralized management of all store
+            locations, real-time menu updates, promotional campaign management,
+            and comprehensive reporting tools.
+          </p>
+
+          <p><strong>Key Implementation Features:</strong></p>
+          <ul style="color: var(--gray); margin-left: 1.5rem; line-height: 1.8">
+            <li>
+              Store-based system scalable to 60+ locations with isolated
+              configurations
+            </li>
+            <li>Complete web admin panel for centralized management</li>
+            <li>
+              Flutter kiosk app designed for touch interfaces and kiosk mode
+            </li>
+            <li>REST APIs designed for seamless integration</li>
+            <li>
+              Production-ready backend with automated deployment capabilities
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- Project Navigation -->
+    <section class="project-navigation-section">
+      <div class="container">
+        <div class="project-navigation">
+          <a href="#project2" class="nav-btn">
+            <i class="fas fa-arrow-left"></i>
+            Previous: Loyalty Platform
+          </a>
+          <a href="index.html#projects" class="nav-btn">
+            <i class="fas fa-home"></i>
+            Back to Home
+          </a>
+          <a href="#project1" class="nav-btn">
+            Next: AI Shift Management
+            <i class="fas fa-arrow-right"></i>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="container">
+        <div class="footer-content">
+          <div class="footer-logo">
+            <div class="logo">MY</div>
+            <p>Full-Stack Developer</p>
+          </div>
+
+          <div class="footer-links">
+            <a href="index.html">Home</a>
+            <a href="#project1">Projects</a>
+            <a href="index.html#skills">Skills</a>
+            <a href="index.html#contact">Contact</a>
+          </div>
+
+          <div class="footer-copyright">
+            <p>
+              &copy; <span id="currentYear"></span> Mohammed Yousuf. All rights
+              reserved.
+            </p>
+            <p>Building full-stack solutions (web, mobile, backend, and APIs).</p>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Back to Top -->
+    <button class="back-to-top">
+      <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <!-- Scripts -->
+    <script src="scripts/space-bg.js"></script>
+    <script src="scripts/main.js"></script>
+    <script>
+      // Update current year in footer
+      document.getElementById("currentYear").textContent =
+        new Date().getFullYear();
+
+      // Smooth scroll for project navigation
+      document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+        anchor.addEventListener("click", function (e) {
+          e.preventDefault();
+          const targetId = this.getAttribute("href");
+          if (targetId === "#") return;
+
+          const targetElement = document.querySelector(targetId);
+          if (targetElement) {
+            window.scrollTo({
+              top: targetElement.offsetTop - 80,
+              behavior: "smooth",
+            });
+          }
+        });
+      });
+
+      // Update active nav link on scroll
+      window.addEventListener("scroll", () => {
+        const sections = document.querySelectorAll("section[id]");
+        const navLinks = document.querySelectorAll(".nav-link");
+
+        let current = "";
+
+        sections.forEach((section) => {
+          const sectionTop = section.offsetTop;
+          const sectionHeight = section.clientHeight;
+
+          if (window.scrollY >= sectionTop - 100) {
+            current = section.getAttribute("id");
+          }
+        });
+
+        navLinks.forEach((link) => {
+          link.classList.remove("active");
+          if (link.getAttribute("href") === `#${current}`) {
+            link.classList.add("active");
+          }
+        });
+      });
+
+      // Initialize mobile menu
+      const navToggle = document.querySelector(".nav-toggle");
+      const navLinks = document.querySelector(".nav-links");
+
+      if (navToggle) {
+        navToggle.addEventListener("click", () => {
+          navLinks.classList.toggle("active");
+          navToggle.classList.toggle("active");
+          navToggle.querySelector(".hamburger").classList.toggle("active");
+        });
+
+        document.querySelectorAll(".nav-link").forEach((link) => {
+          link.addEventListener("click", () => {
+            navLinks.classList.remove("active");
+            navToggle.classList.remove("active");
+            navToggle.querySelector(".hamburger").classList.remove("active");
+          });
+        });
+      }
+
+      // Back to top button
+      const backToTop = document.querySelector(".back-to-top");
+      window.addEventListener("scroll", () => {
+        if (window.pageYOffset > 300) {
+          backToTop.style.opacity = "1";
+          backToTop.style.visibility = "visible";
+        } else {
+          backToTop.style.opacity = "0";
+          backToTop.style.visibility = "hidden";
+        }
+      });
+
+      backToTop.addEventListener("click", () => {
+        window.scrollTo({
+          top: 0,
+          behavior: "smooth",
+        });
+      });
+    </script>
+  </body>
+</html>
